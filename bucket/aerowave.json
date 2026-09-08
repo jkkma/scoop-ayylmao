@@ -1,5 +1,5 @@
 {
-    "version": "0.6.1",
+    "version": "0.6.2",
     "description": "Internet radio player and alarm clock - wakes you to a station or to a random track from a folder, with a Frutiger Aero face and a low-poly orb",
     "homepage": "https://github.com/jkkma/aerowave",
     "license": {
@@ -15,8 +15,8 @@
     ],
     "architecture": {
         "64bit": {
-            "url": "https://github.com/jkkma/aerowave/releases/download/v0.6.1/Aerowave-0.6.1-win-x64.zip",
-            "hash": "3e711b4163b9a32d38d8cb5ec35ee451b101ec3f91a5d13693b435b59b9cc5e8"
+            "url": "https://github.com/jkkma/aerowave/releases/download/v0.6.2/Aerowave-0.6.2-win-x64.zip",
+            "hash": "ccffc1ede460d78b25b884034af5332e9dd6b5325f35a3e41b1d56ad1c9d1db5"
         }
     },
     "extract_dir": "Aerowave",
