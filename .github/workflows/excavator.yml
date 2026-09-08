@@ -1,0 +1,30 @@
+name: Excavator
+
+# Follows each manifest's checkver and, where upstream has moved, rewrites the
+# version, URL and hash with autoupdate and commits the result. Needs no
+# credentials beyond the repository's own token: the manifests it edits and the
+# branch it pushes to are both here.
+on:
+  workflow_dispatch:
+  schedule:
+    # every six hours, off the hour so it does not pile up with everyone else's
+    - cron: "35 */6 * * *"
+
+permissions:
+  # to commit the updated manifests
+  contents: write
+
+jobs:
+  excavate:
+    name: Excavate
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Excavate
+        uses: ScoopInstaller/GithubActions@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Leave manifests alone when upstream has not moved, so the log is
+          # only ever about something that actually changed.
+          SKIP_UPDATED: "1"
