@@ -1,0 +1,42 @@
+{
+    "version": "0.1.0",
+    "description": "Internet radio player and alarm clock - wakes you to a station or to a random track from a folder, with a Frutiger Aero face and a low-poly orb",
+    "homepage": "https://github.com/jkkma/aerowave",
+    "license": {
+        "identifier": "MIT",
+        "url": "https://github.com/jkkma/aerowave/blob/main/LICENSE"
+    },
+    "notes": [
+        "Settings live in 'data' inside the app directory, which is persisted, so they survive an update. Nothing is written to your user profile.",
+        "Alarms only ring while Aerowave is running. Closing the window hides it to the tray and leaves the clock going; turn on 'Start with Windows' in SETUP if you want it back after a reboot. That registry entry is the only thing it writes outside its own folder.",
+        "Set a backup folder in SETUP: it is what rings when a station 404s or will not start.",
+        "Needs the WebView2 runtime, which ships with Windows 11 and current Windows 10."
+    ],
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/jkkma/aerowave/releases/download/v0.1.0/Aerowave-0.1.0-win-x64.zip",
+            "hash": "cfc49797f6b30d26d3f3f46deff7f68f3332fd4aac4b4417c0b59b8c41457a5e"
+        }
+    },
+    "extract_dir": "Aerowave",
+    "bin": "aerowave.exe",
+    "shortcuts": [
+        [
+            "aerowave.exe",
+            "Aerowave"
+        ]
+    ],
+    "persist": [
+        "data"
+    ],
+    "checkver": {
+        "github": "https://github.com/jkkma/aerowave"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/jkkma/aerowave/releases/download/v$version/Aerowave-$version-win-x64.zip"
+            }
+        }
+    }
+}
