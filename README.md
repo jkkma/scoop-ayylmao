@@ -14,16 +14,10 @@ takes whatever name you type there, and nothing in this repository declares one.
 | App | What it is |
 | --- | --- |
 | [`aerowave`](https://github.com/jkkma/aerowave) | Internet radio player and alarm clock — wakes you to a station or to a random track from a folder |
-| [`nmkoder-avalonia`](https://github.com/jkkma/nmkoder) | Video encoding, muxing and analysis GUI wrapping FFmpeg, FFprobe and av1an |
 
 ```
 scoop install aerowave
-scoop install nmkoder-avalonia
 ```
-
-`nmkoder-avalonia` is not called `nmkoder` because Scoop's community `extras`
-bucket already carries the pre-fork WinForms Nmkoder under that name, and a bare
-`scoop install nmkoder` resolves there instead.
 
 ## Moved from jkkma/nmkoder
 
@@ -32,8 +26,8 @@ one app. Adding it meant cloning that whole source tree — 14 MB of application
 and history to reach a few KB of manifests — and it put a URL ending in `/nmkoder`
 in front of anyone installing something else entirely.
 
-The old location still works and still carries `nmkoder-avalonia`, so nothing
-breaks if you added it that way. To move across:
+The old location still carries a copy of `aerowave`, so nothing breaks if you added
+it that way. To move across:
 
 ```
 scoop bucket rm ayylmao
