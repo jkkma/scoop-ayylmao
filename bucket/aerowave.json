@@ -31,7 +31,17 @@
         "data"
     ],
     "checkver": {
-        "github": "https://github.com/jkkma/aerowave"
+        "url": "https://api.github.com/repos/jkkma/aerowave/releases?per_page=100",
+        "script": [
+            "$releases = ($page | ConvertFrom-Json) | Where-Object {",
+            "    !$_.draft -and !$_.prerelease -and $_.tag_name -cmatch '^v\\d+\\.\\d+\\.\\d+$' -and",
+            "    $_.assets.name -ccontains ('Aerowave-{0}-win-x64.zip' -f $_.tag_name.Substring(1))",
+            "}",
+            "$release = $releases | Sort-Object { [version]$_.tag_name.Substring(1) } -Descending | Select-Object -First 1",
+            "if (!$release) { throw 'No stable Windows x64 release was found.' }",
+            "$release.tag_name"
+        ],
+        "regex": "^v(\\d+\\.\\d+\\.\\d+)$"
     },
     "autoupdate": {
         "architecture": {
