@@ -1,5 +1,5 @@
 {
-    "version": "0.12.4",
+    "version": "0.12.5",
     "description": "Internet radio player and alarm clock - wakes you to a station or to a random track from a folder, with a Frutiger Aero face and a retro 3D orb",
     "homepage": "https://github.com/jkkma/aerowave",
     "license": {
@@ -11,13 +11,13 @@
         "Alarms only ring while Aerowave is running. Closing the window hides it to the tray and leaves the clock going; turn on 'Start with Windows' in SETUP if you want it back after a reboot. That registry entry is the only thing it writes outside its own folder.",
         "Set a backup folder in SETUP: it is what rings when a station 404s or will not start.",
         "Needs the WebView2 runtime, which ships with Windows 11 and current Windows 10.",
-        "Wake alarms require supported hardware and Allow wake timers enabled in the Windows power plan. Modern Standby support varies; alarms cannot power on a shut-down PC.",
+        "Wake alarms require supported hardware and Allow wake timers enabled in the Windows power plan. Automatic wake on Modern Standby is unverified; alarms cannot power on a shut-down PC.",
         "The binary is unsigned: SmartScreen warns the first time a manually downloaded copy runs. Scoop checks the hash for you."
     ],
     "architecture": {
         "64bit": {
-            "url": "https://github.com/jkkma/aerowave/releases/download/v0.12.4/Aerowave-0.12.4-win-x64.zip",
-            "hash": "c65842e2dc24d6c17815bcb12eb3e655977f59193bc9c271cce19554d3e74163"
+            "url": "https://github.com/jkkma/aerowave/releases/download/v0.12.5/Aerowave-0.12.5-win-x64.zip",
+            "hash": "6aece9258917478e155f1d82bebe6a1b8907a3ce6a535709ab2e0d3f1e3c3b81"
         }
     },
     "extract_dir": "Aerowave",
