@@ -1,0 +1,39 @@
+{
+  "version": "0.1.1",
+  "description": "Desktop media encoding, muxing, and analysis.",
+  "homepage": "https://github.com/jkkma/jesses",
+  "license": "GPL-3.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/jkkma/jesses/releases/download/v0.1.1/jesses_0.1.1_x86_64-pc-windows-msvc_release_portable.zip",
+      "hash": "ccc9132479dbff52e8f69f12cfddbc66a2babd91c15494214778a8f502ff4985"
+    }
+  },
+  "bin": "jesses.exe",
+  "persist": "jesses-data",
+  "notes": [
+    "Requires the Microsoft Edge WebView2 runtime already available on the machine.",
+    "Preferences, history, recovery metadata and browser state are kept in jesses-data and persist across Scoop updates and ordinary uninstall.",
+    "Keep source media and recovery workspace paths unchanged while a job is saved for resume."
+  ],
+  "checkver": {
+    "url": "https://api.github.com/repos/jkkma/jesses/releases?per_page=100",
+    "script": [
+      "$releases = ($page | ConvertFrom-Json) | Where-Object {",
+      "    !$_.draft -and $_.tag_name -cmatch '^v\\d+\\.\\d+\\.\\d+$' -and",
+      "    $_.assets.name -ccontains ('jesses_{0}_x86_64-pc-windows-msvc_release_portable.zip' -f $_.tag_name.Substring(1))",
+      "}",
+      "$release = $releases | Sort-Object { [version]$_.tag_name.Substring(1) } -Descending | Select-Object -First 1",
+      "if (!$release) { throw 'No Windows x64 release with the expected portable ZIP was found.' }",
+      "$release.tag_name"
+    ],
+    "regex": "^v(\\d+\\.\\d+\\.\\d+)$"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/jkkma/jesses/releases/download/v$version/jesses_$version_x86_64-pc-windows-msvc_release_portable.zip"
+      }
+    }
+  }
+}
