@@ -14,9 +14,11 @@ takes whatever name you type there, and nothing in this repository declares one.
 | App | What it is |
 | --- | --- |
 | [`aerowave`](https://github.com/jkkma/aerowave) | Internet radio player and alarm clock — wakes you to a station or to a random track from a folder |
+| [`jesses`](https://github.com/jkkma/jesses) | Windows media encoding, muxing, and analysis preview |
 
 ```
 scoop install aerowave
+scoop install jesses
 ```
 
 ## Moved from jkkma/nmkoder
