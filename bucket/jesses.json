@@ -1,12 +1,12 @@
 {
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Desktop media encoding, muxing, and analysis.",
   "homepage": "https://github.com/jkkma/jesses",
   "license": "GPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/jkkma/jesses/releases/download/v0.1.1/jesses_0.1.1_x86_64-pc-windows-msvc_release_portable.zip",
-      "hash": "ccc9132479dbff52e8f69f12cfddbc66a2babd91c15494214778a8f502ff4985"
+      "url": "https://github.com/jkkma/jesses/releases/download/v1.0/jesses_1.0.0_x86_64-pc-windows-msvc_release_portable.zip",
+      "hash": "e99806b1d3930995d0b668b9e48efbba7418fcad0d48cf4b49369b3dbfb04992"
     }
   },
   "bin": "jesses.exe",
@@ -20,19 +20,24 @@
     "url": "https://api.github.com/repos/jkkma/jesses/releases?per_page=100",
     "script": [
       "$releases = ($page | ConvertFrom-Json) | Where-Object {",
-      "    !$_.draft -and $_.tag_name -cmatch '^v\\d+\\.\\d+\\.\\d+$' -and",
-      "    $_.assets.name -ccontains ('jesses_{0}_x86_64-pc-windows-msvc_release_portable.zip' -f $_.tag_name.Substring(1))",
+      "  if ($_.draft -or $_.tag_name -cnotmatch '^v(\\d+)\\.(\\d+)(?:\\.(\\d+))?$') { return $false }",
+      "  $patch = if ($Matches[3]) { $Matches[3] } else { '0' }",
+      "  $version = '{0}.{1}.{2}' -f $Matches[1], $Matches[2], $patch",
+      "  $_.assets.name -ccontains ('jesses_{0}_x86_64-pc-windows-msvc_release_portable.zip' -f $version)",
       "}",
       "$release = $releases | Sort-Object { [version]$_.tag_name.Substring(1) } -Descending | Select-Object -First 1",
       "if (!$release) { throw 'No Windows x64 release with the expected portable ZIP was found.' }",
-      "$release.tag_name"
+      "$release.tag_name -cmatch '^v(\\d+)\\.(\\d+)(?:\\.(\\d+))?$' | Out-Null",
+      "$patch = if ($Matches[3]) { $Matches[3] } else { '0' }",
+      "$version = '{0}.{1}.{2}' -f $Matches[1], $Matches[2], $patch",
+      "'{0}|{1}' -f $version, $release.tag_name"
     ],
-    "regex": "^v(\\d+\\.\\d+\\.\\d+)$"
+    "regex": "^(\\d+\\.\\d+\\.\\d+)\\|v(?<tag>\\d+\\.\\d+(?:\\.\\d+)?)$"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/jkkma/jesses/releases/download/v$version/jesses_$version_x86_64-pc-windows-msvc_release_portable.zip"
+        "url": "https://github.com/jkkma/jesses/releases/download/v$matchTag/jesses_$version_x86_64-pc-windows-msvc_release_portable.zip"
       }
     }
   }
