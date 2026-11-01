@@ -15,11 +15,18 @@ takes whatever name you type there, and nothing in this repository declares one.
 | --- | --- |
 | [`aerowave`](https://github.com/jkkma/aerowave) | Internet radio player and alarm clock — wakes you to a station or to a random track from a folder |
 | [`jesses`](https://github.com/jkkma/jesses) | Windows media encoding, muxing, and analysis preview |
+| [`staxrip`](https://github.com/jkkma/staxrip) | StaxRip fork with searchable clickable options and accessible VapourSynth filter editing |
 
 ```
 scoop install aerowave
 scoop install jesses
+scoop install ayylmao/staxrip
 ```
+
+`staxrip` combines the matching upstream runtime bundle with this fork's small
+executable overlay. Its update rule follows only compatible fork releases, so an
+upstream update cannot replace the computer-use changes. Select StaxRip's local
+`Settings` folder on first run to use Scoop's settings persistence.
 
 ## Moved from jkkma/nmkoder
 
