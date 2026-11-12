@@ -1,15 +1,23 @@
 {
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Desktop media encoding, muxing, and analysis.",
     "homepage": "https://github.com/jkkma/jesses",
     "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/jkkma/jesses/releases/download/v1.2.0/jesses_1.2.0_x86_64-pc-windows-msvc_release_portable.zip",
-            "hash": "fd661fca6956e4c3f47940321d15b41bcdc235a3bd81dfdb550cf3fbf0d20923"
+            "url": "https://github.com/jkkma/jesses/releases/download/v1.2.1/jesses_1.2.1_x86_64-pc-windows-msvc_release_portable.zip",
+            "hash": "37f238fdf89f6517e7f88aaf3b1fb4f901f7ef18780359b42c0208885008c65a"
         }
     },
     "bin": "jesses.exe",
+    "shortcuts": [
+        [
+            "jesses.exe",
+            "Jesses",
+            "",
+            "jesses.exe"
+        ]
+    ],
     "persist": "jesses-data",
     "notes": [
         "Requires the Microsoft Edge WebView2 runtime already available on the machine.",
