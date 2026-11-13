@@ -15,11 +15,18 @@ takes whatever name you type there, and nothing in this repository declares one.
 | --- | --- |
 | [`aerowave`](https://github.com/jkkma/aerowave) | Internet radio player and alarm clock — wakes you to a station or to a random track from a folder |
 | [`jesses`](https://github.com/jkkma/jesses) | Windows media encoding, muxing, and analysis preview |
+| [`melonds-custom`](https://github.com/heavyjam-code/melonDS/tree/bottom-right-layout) | melonDS fork with a bottom-aligned horizontal layout and 2:1 screen emphasis |
 
 ```
 scoop install aerowave
 scoop install jesses
+scoop install ayylmao/melonds-custom
 ```
+
+`melonds-custom` stores settings and local emulator data in its persisted `portable`
+folder, so Scoop updates keep them. Game saves remain beside the ROM by default.
+The package version identifies a release of the custom build; the About dialog
+shows its underlying melonDS version and source commit.
 
 ## Moved from jkkma/nmkoder
 
