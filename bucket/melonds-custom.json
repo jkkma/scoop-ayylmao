@@ -1,0 +1,42 @@
+{
+    "version": "1.1.20261112",
+    "description": "melonDS fork with a bottom-aligned horizontal layout and 2:1 screen emphasis",
+    "homepage": "https://github.com/heavyjam-code/melonDS/tree/bottom-right-layout",
+    "license": "GPL-3.0-or-later",
+    "notes": "Settings and local emulator data are kept in the persisted portable directory. Game saves remain beside the ROM by default.",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/heavyjam-code/melonDS/releases/download/v1.1.20261112/melonDS-custom-1.1.20261112-windows-x86_64.zip",
+            "hash": "550af95a5c278834767f9472bf8af842d76cc6dd4aec11cea8f9d783e050a0be"
+        }
+    },
+    "bin": "melonDS-custom.exe",
+    "shortcuts": [
+        [
+            "melonDS-custom.exe",
+            "melonDS Custom",
+            "--fullscreen"
+        ]
+    ],
+    "persist": "portable",
+    "checkver": {
+        "url": "https://api.github.com/repos/heavyjam-code/melonDS/releases?per_page=100",
+        "script": [
+            "$releases = ($page | ConvertFrom-Json) | Where-Object {",
+            "    !$_.draft -and !$_.prerelease -and $_.tag_name -cmatch '^v\\d+\\.\\d+\\.\\d+$' -and",
+            "    $_.assets.name -ccontains ('melonDS-custom-{0}-windows-x86_64.zip' -f $_.tag_name.Substring(1))",
+            "}",
+            "$release = $releases | Sort-Object { [version]$_.tag_name.Substring(1) } -Descending | Select-Object -First 1",
+            "if (!$release) { throw 'No stable custom Windows x64 release was found.' }",
+            "$release.tag_name"
+        ],
+        "regex": "^v(\\d+\\.\\d+\\.\\d+)$"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/heavyjam-code/melonDS/releases/download/v$version/melonDS-custom-$version-windows-x86_64.zip"
+            }
+        }
+    }
+}
