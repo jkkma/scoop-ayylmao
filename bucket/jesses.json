@@ -1,12 +1,12 @@
 {
-    "version": "1.3.2",
+    "version": "1.3.3",
     "description": "Desktop media encoding, muxing, and analysis.",
     "homepage": "https://github.com/jkkma/jesses",
     "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/jkkma/jesses/releases/download/v1.3.2/jesses_1.3.2_x86_64-pc-windows-msvc_release_portable.zip",
-            "hash": "cc16d8ebd0a2525d19dfe21aaa21f12932ac610480e0da56996f8928e4c8fb33"
+            "url": "https://github.com/jkkma/jesses/releases/download/v1.3.3/jesses_1.3.3_x86_64-pc-windows-msvc_release_portable.zip",
+            "hash": "d26f7bb59023537408b17fcc0235fc9a8496c253f42162df58519ae5a0946ca1"
         }
     },
     "bin": "jesses.exe",
@@ -21,7 +21,7 @@
     "persist": "jesses-data",
     "notes": [
         "Requires the Microsoft Edge WebView2 runtime already available on the machine.",
-        "Bundled Patman MSVC encoding requires the x64 Microsoft Visual C++ v14 Redistributable 14.51 or later (https://aka.ms/vc14/vc_redist.x64.exe).",
+        "Bundled SVT-AV1-HDR encoding requires the x64 Microsoft Visual C++ v14 Redistributable (https://aka.ms/vc14/vc_redist.x64.exe).",
         "Preferences, history, recovery metadata and browser state are kept in jesses-data and persist across Scoop updates and ordinary uninstall.",
         "Keep source media and recovery workspace paths unchanged while a job is saved for resume."
     ],
