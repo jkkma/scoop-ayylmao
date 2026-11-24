@@ -1,28 +1,53 @@
 {
-  "version": "1.3.10",
-  "description": "Desktop media encoding, muxing, and analysis.",
-  "homepage": "https://github.com/jkkma/jesses",
-  "license": "GPL-3.0-only",
-  "architecture": {
-    "64bit": {
-      "url": "https://github.com/jkkma/jesses/releases/download/v1.3.10/jesses_1.3.10_x86_64-pc-windows-msvc_release_portable.zip",
-      "hash": "f3420be9260e6ba7b9432148a6bf2486ee26f6889e4ef62d99997f572f1eb597"
+    "version": "1.3.10",
+    "description": "Desktop media encoding, muxing, and analysis.",
+    "homepage": "https://github.com/jkkma/jesses",
+    "license": "GPL-3.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/jkkma/jesses/releases/download/v1.3.10/jesses_1.3.10_x86_64-pc-windows-msvc_release_portable.zip",
+            "hash": "f3420be9260e6ba7b9432148a6bf2486ee26f6889e4ef62d99997f572f1eb597"
+        }
+    },
+    "bin": "jesses.exe",
+    "shortcuts": [
+        [
+            "jesses.exe",
+            "Jesses",
+            "",
+            "jesses.exe"
+        ]
+    ],
+    "persist": "jesses-data",
+    "notes": [
+        "Requires the Microsoft Edge WebView2 runtime already available on the machine.",
+        "Bundled SVT-AV1-HDR encoding requires the x64 Microsoft Visual C++ v14 Redistributable (https://aka.ms/vc14/vc_redist.x64.exe).",
+        "Preferences, history, recovery metadata and browser state are kept in jesses-data and persist across Scoop updates and ordinary uninstall.",
+        "Keep source media and recovery workspace paths unchanged while a job is saved for resume."
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/jkkma/jesses/releases?per_page=100",
+        "script": [
+            "$releases = ($page | ConvertFrom-Json) | Where-Object {",
+            "  if ($_.draft -or $_.tag_name -cnotmatch '^v(\\d+)\\.(\\d+)(?:\\.(\\d+))?$') { return $false }",
+            "  $patch = if ($Matches[3]) { $Matches[3] } else { '0' }",
+            "  $version = '{0}.{1}.{2}' -f $Matches[1], $Matches[2], $patch",
+            "  $_.assets.name -ccontains ('jesses_{0}_x86_64-pc-windows-msvc_release_portable.zip' -f $version)",
+            "}",
+            "$release = $releases | Sort-Object { [version]$_.tag_name.Substring(1) } -Descending | Select-Object -First 1",
+            "if (!$release) { throw 'No Windows x64 release with the expected portable ZIP was found.' }",
+            "$release.tag_name -cmatch '^v(\\d+)\\.(\\d+)(?:\\.(\\d+))?$' | Out-Null",
+            "$patch = if ($Matches[3]) { $Matches[3] } else { '0' }",
+            "$version = '{0}.{1}.{2}' -f $Matches[1], $Matches[2], $patch",
+            "'{0}|{1}' -f $version, $release.tag_name"
+        ],
+        "regex": "^(\\d+\\.\\d+\\.\\d+)\\|v(?<tag>\\d+\\.\\d+(?:\\.\\d+)?)$"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/jkkma/jesses/releases/download/v$matchTag/jesses_$version_x86_64-pc-windows-msvc_release_portable.zip"
+            }
+        }
     }
-  },
-  "bin": "jesses.exe",
-  "shortcuts": [
-    [
-      "jesses.exe",
-      "Jesses",
-      "",
-      "jesses.exe"
-    ]
-  ],
-  "persist": "jesses-data",
-  "notes": [
-    "Requires the Microsoft Edge WebView2 runtime already available on the machine.",
-    "Bundled SVT-AV1-HDR encoding requires the x64 Microsoft Visual C++ v14 Redistributable (https://aka.ms/vc14/vc_redist.x64.exe).",
-    "Preferences, history, recovery metadata and browser state are kept in jesses-data and persist across Scoop updates and ordinary uninstall.",
-    "Keep source media and recovery workspace paths unchanged while a job is saved for resume."
-  ]
 }
