@@ -1,12 +1,12 @@
 {
-    "version": "1.4.1",
+    "version": "1.4.2",
     "description": "Desktop media encoding, muxing, and analysis.",
     "homepage": "https://github.com/jkkma/jesses",
     "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/jkkma/jesses/releases/download/v1.4.1/jesses_1.4.1_x86_64-pc-windows-msvc_release_portable.zip",
-            "hash": "777a4da69f1c1f7e516f3eb49b6f57d7e3bab61b95f6cd7fb311b24aa59b1def"
+            "url": "https://github.com/jkkma/jesses/releases/download/v1.4.2/jesses_1.4.2_x86_64-pc-windows-msvc_release_portable.zip",
+            "hash": "987aa22a3d0fe5e10698b24ed4d158e7c4eebb5113d12b9d105f9ed404ca1d07"
         }
     },
     "bin": "jesses.exe",
